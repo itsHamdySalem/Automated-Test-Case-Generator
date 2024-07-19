@@ -104,6 +104,7 @@ class AutomatedTestCaseGenerator:
             logging.error(f"An error occurred while writing to the file: {e}")
 
 # Example usage:
-test_case_generator = AutomatedTestCaseGenerator()
-test_case_generator.generate_test_cases()
-test_case_generator.generate_csv_file("server_test_cases.csv")
+if __name__ == "__main__":
+    test_case_generator = AutomatedTestCaseGenerator()
+    test_case_generator.generate_test_cases()
+    test_case_generator.generate_csv_file("Assignment1/server_test_cases.csv")

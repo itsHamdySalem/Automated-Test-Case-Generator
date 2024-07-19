@@ -28,7 +28,9 @@ class AutomatedTestCaseGenerator:
         logging.basicConfig(level=logging.INFO)
 
     def generate_headers(self):
-        """Generate column headers for the output csv file"""
+        """
+        Generate column headers for the output csv file
+        """
         self.headers = ["TestCase ID"]
         for client_type in self.client_types:
             for option in self.options:
@@ -38,14 +40,18 @@ class AutomatedTestCaseGenerator:
             self.headers.append(f"Expected {option}")
 
     def generate_all_combinations(self):
-        """Generate all possible combinations of test cases"""
+        """
+        Generate all possible combinations of test cases
+        """
         n = len(self.client_types) * len(self.options)
         combinations = list(itertools.product(self.values, repeat=n))
         self.test_cases = [list(combination) for combination in combinations]
         logging.info(f"Generated {len(self.test_cases)} test case combinations.")
 
     def generate_expected_output(self):
-        """Generate the expected output of the generated test cases"""
+        """
+        Generate the expected output of the generated test cases
+        """
         for idx, test_case in enumerate(self.test_cases):
             valid_tc = True
             current_test_case = test_case.copy()
@@ -74,14 +80,17 @@ class AutomatedTestCaseGenerator:
         logging.info("Expected outputs and validity generated for all test cases.")
 
     def generate_test_cases(self):
-        """Generate test cases, expected output, and headers"""
+        """
+        Generate test cases, expected output, and headers
+        """
         self.generate_headers()
         self.generate_all_combinations()
         self.generate_expected_output()
         logging.info("Test cases generated.")
 
     def generate_csv_file(self, csv_file_path: str):
-        """Write the generated test cases to a csv file
+        """
+        Write the generated test cases to a csv file
 
         Args:
             csv_file_path (str): Path to the csv file
@@ -102,6 +111,7 @@ class AutomatedTestCaseGenerator:
             logging.info(f"Test cases written to {csv_file_path}")
         except Exception as e:
             logging.error(f"An error occurred while writing to the file: {e}")
+            raise e
 
 # Example usage:
 if __name__ == "__main__":

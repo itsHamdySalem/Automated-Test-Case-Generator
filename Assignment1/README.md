@@ -58,21 +58,21 @@ Assignment1/
 
 ## Screenshots
 
-1. **Enter Global Options**
+1. **Running the Batch File**
 
-![Enter Global Options](assets\enter-global-options.png)
+![Running the Batch File](assets/run-batch-file.png)
 
-2. **Running the Batch File**
+2. **Enter Global Options**
 
-![Running the Batch File](assets\run-batch-file.png)
+![Enter Global Options](assets/enter-global-options.png)
 
 3. **Test Cases Generated**
 
-![Test Cases Generated](assets\test-cases-generated.png)
+![Test Cases Generated](assets/test-cases-generated.png)
 
 4. **CSV Output File**
 
-![CSV Output File](assets\csv-output-file.png)
+![CSV Output File](assets/csv-output-file.png)
 
 ## Testing Plan
 

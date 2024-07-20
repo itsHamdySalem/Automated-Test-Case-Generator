@@ -163,3 +163,12 @@ cython_debug/
 
 # CSV files
 *.csv
+
+# object files
+*.o
+
+#exectuble files
+*.exe
+
+# .vscode folder
+.vscode/

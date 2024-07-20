@@ -3,6 +3,7 @@ import logging
 import itertools
 import os
 import csv
+import re
 
 class AutomatedTestCaseGenerator:
     def __init__(self, options: List[str], values: List[str] = ['TRUE', 'FALSE', 'NA'], client_types: List[str] = ['Master', 'Slave']):
@@ -18,6 +19,8 @@ class AutomatedTestCaseGenerator:
             raise ValueError("Options list cannot be empty.")
         if len(options) != len(set(options)):
             raise ValueError("Options list should have unique elements.")
+        if any(self.contains_special_characters(option) for option in options):
+            raise ValueError("Options list cannot contains special characters.")
         
         self.options = options
         self.values = values
@@ -26,6 +29,19 @@ class AutomatedTestCaseGenerator:
         self.headers = []
 
         logging.basicConfig(level=logging.INFO)
+
+    def contains_special_characters(self, text: str) -> bool:
+        """
+        Check if the text contains special characters.
+
+        Args:
+            text (str): The text to check.
+
+        Returns:
+            bool: True if special characters are found, False otherwise.
+        """
+        # Regex to match any character that is not alphanumeric or underscore
+        return bool(re.search(r'[^a-zA-Z0-9_]', text))
 
     def generate_headers(self):
         """
@@ -112,9 +128,15 @@ class AutomatedTestCaseGenerator:
                 for test_case in self.test_cases:
                     csv_writer.writerow(test_case)
             logging.info(f"Test cases written to {csv_file_path}")
+        except PermissionError:
+            logging.error(f"Permission error: Cannot write to the file {csv_file_path}")
+            raise
+        except FileNotFoundError:
+            logging.error(f"File not found error: {csv_file_path}")
+            raise
         except Exception as e:
             logging.error(f"An error occurred while writing to the file: {e}")
-            raise e
+            raise
 
 # Example usage:
 if __name__ == "__main__":

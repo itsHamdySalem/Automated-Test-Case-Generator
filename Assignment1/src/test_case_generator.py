@@ -5,12 +5,12 @@ import os
 import csv
 
 class AutomatedTestCaseGenerator:
-    def __init__(self, options: List[str] = ["BufferData", "TimeOut"], values: List[str] = ['TRUE', 'FALSE', 'NA'], client_types: List[str] = ['Master', 'Slave']):
+    def __init__(self, options: List[str], values: List[str] = ['TRUE', 'FALSE', 'NA'], client_types: List[str] = ['Master', 'Slave']):
         """
         Initialize AutomatedTestCaseGenerator object
 
         Args:
-            options (List[str], optional): List of server global options. Defaults to ["BufferData", "TimeOut"].
+            options (List[str]): List of server global options.
             values (List[str], optional): List of possible values for each option. Defaults to ['TRUE', 'FALSE', 'NA'].
             client_types (List[str], optional): List of client types. Defaults to ['Master', 'Slave'].
         """
@@ -46,6 +46,7 @@ class AutomatedTestCaseGenerator:
         n = len(self.client_types) * len(self.options)
         combinations = list(itertools.product(self.values, repeat=n))
         self.test_cases = [list(combination) for combination in combinations]
+        
         logging.info(f"Generated {len(self.test_cases)} test case combinations.")
 
     def generate_expected_output(self):
@@ -77,6 +78,7 @@ class AutomatedTestCaseGenerator:
                 current_test_case.extend(expected_options)
             
             self.test_cases[idx] = current_test_case
+        
         logging.info("Expected outputs and validity generated for all test cases.")
 
     def generate_test_cases(self):
@@ -86,6 +88,7 @@ class AutomatedTestCaseGenerator:
         self.generate_headers()
         self.generate_all_combinations()
         self.generate_expected_output()
+        
         logging.info("Test cases generated.")
 
     def generate_csv_file(self, csv_file_path: str):
@@ -115,6 +118,7 @@ class AutomatedTestCaseGenerator:
 
 # Example usage:
 if __name__ == "__main__":
-    test_case_generator = AutomatedTestCaseGenerator()
+    options = ['BufferData', 'TimeOut']
+    test_case_generator = AutomatedTestCaseGenerator(options=options)
     test_case_generator.generate_test_cases()
-    test_case_generator.generate_csv_file("Assignment1/server_test_cases.csv")
+    test_case_generator.generate_csv_file("Assignment1/output/server_test_cases.csv")

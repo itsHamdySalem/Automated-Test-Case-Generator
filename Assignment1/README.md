@@ -39,7 +39,7 @@ Assignment1/
     The project includes a batch file (`run.bat`) that automates the setup and execution process. Run this file by double-clicking on it in the File Explorer or by using the following command in the terminal:
 
     ```sh
-    run.bat
+    ./run.bat
     ```
 
     This batch file will:
@@ -74,14 +74,3 @@ Assignment1/
 
 ![CSV Output File](assets/csv-output-file.png)
 
-## Testing Plan
-
-### Testing Objectives
-
-### Testing Requirements
-
-### Testing Techniques
-
-### Testing Deliverables
-
-### Detailed Test Cases
